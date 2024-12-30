@@ -19,16 +19,17 @@ Key Activities:
 * HTTP Security Header Check: The tool checks for the presence of essential HTTP headers like Strict-Transport-Security and X-Frame-Options to ensure the server is configured with basic security protections. If 
   any of these headers are missing, the tool issues warnings to indicate potential security risks.
 
-The tool checks for the presence of essential HTTP headers like Strict-Transport-Security and X-Frame-Options to ensure the server is configured with basic security protections. If any of these headers are missing, the tool issues warnings to indicate potential security risks.
 
 Technologies Used:
-* Python: The code is written in Python, leveraging basic programming concepts like conditional statements, loops, and functions.
-* Regular Expressions (re): The re module is used to match specific patterns in the password, such as digits, uppercase letters, and special characters.
-* Standard Python Functions: Functions like input(), print(), and list manipulations (e.g., append()) are used.
+* Python: Python is used as the primary programming language for this project, leveraging built-in libraries such as socket for port scanning and requests for HTTP requests and header analysis.
+* Requests Library: The requests library is used to send HTTP requests to the target URL and analyze the response headers.
+* Socket Library: The socket library is used to create TCP/IP connections for port scanning, checking whether specific ports on a target machine are open.
+
 
 Key Insights:
-* Password Complexity: Password strength is determined by multiple factors, including length, character variety (upper, lower, digits, special characters), and avoiding commonly used passwords.
-* Regular Expressions: Using re.search() simplifies the task of identifying specific patterns in strings, making it easier to evaluate password strength efficiently.
-* Feedback Mechanism: Providing clear and actionable feedback helps users improve their passwords by addressing specific weaknesses.
-* Security Considerations: Common password checks (like "123456" or "password") help mitigate weak password choices and encourage users to create more secure passwords.
-* Scoring System: The scoring system helps categorize passwords into "Weak", "Moderate", or "Strong", offering a simple yet effective way to convey security level to users.
+* Security of Web Servers: The project highlights the importance of basic security configurations, such as having the right HTTP headers (e.g., Strict-Transport-Security), which prevent certain web-based attacks 
+  like clickjacking or man-in-the-middle attacks.
+* Software Version Vulnerabilities: Detecting server software and version can give insights into whether the server is running outdated software that might be vulnerable to known exploits.
+* Network Entry Points: Open ports can provide valuable information regarding possible entry points into a network or system. The tool helps identify which ports are open and could potentially be misused by 
+  attackers.
+* HTTP Header Security: The project emphasizes checking for crucial HTTP headers that add an additional layer of security to websites, particularly those related to HTTPS enforcement and frame protection.
