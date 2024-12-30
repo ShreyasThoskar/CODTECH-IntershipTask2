@@ -9,6 +9,9 @@ OVERVIEW OF THE PROJECT:
 
 Project : Vulnerability Scanner
 
+![task2](https://github.com/user-attachments/assets/139f3258-da84-435d-896a-c6fd21039cd9)
+
+
 Objective: The objective of this project is to create a tool that can scan a network or a website for common security vulnerabilities, such as open ports, outdated software versions, and HTTP header misconfigurations. This tool checks a target IP for open ports, evaluates the server’s software version, and inspects critical HTTP headers for proper security configurations.
 
 
