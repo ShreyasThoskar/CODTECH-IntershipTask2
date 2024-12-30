@@ -1,0 +1,70 @@
+import socket
+import requests
+
+
+def scan_ports(target, ports):
+    open_ports = []
+    for port in ports:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
+        result = sock.connect_ex((target, port))
+        if result == 0:
+            open_ports.append(port)
+        sock.close()
+    return open_ports
+
+
+def check_software_version(url):
+    try:
+        response = requests.get(url)
+        server_info = response.headers.get("Server", "Unknown")
+        print(f"Server Information: {server_info}")
+
+        if "Apache" in server_info:
+            print("Apache server detected.")
+        elif "nginx" in server_info:
+            print("Nginx server detected.")
+        elif "IIS" in server_info:
+            print("IIS server detected.")
+        else:
+            print("Server is not recognized or could not be determined.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+
+def check_http_headers(url):
+    try:
+        response = requests.get(url)
+        headers = response.headers
+
+
+        if "X-Content-Type-Options" not in headers:
+            pass
+        if "Strict-Transport-Security" not in headers:
+            print("Warning: Strict-Transport-Security header is missing.")
+        if "X-Frame-Options" not in headers:
+            print("Warning: X-Frame-Options header is missing.")
+        else:
+            print("All recommended security headers are present.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+
+def run_vulnerability_scan(target_ip, target_url, ports):
+    print(f"Scanning {target_ip} for open ports...")
+    open_ports = scan_ports(target_ip, ports)
+    print(f"Open ports on {target_ip}: {open_ports}")
+
+    print(f"\nChecking software version for {target_url}...")
+    check_software_version(target_url)
+
+    print(f"\nChecking HTTP headers for {target_url}...")
+    check_http_headers(target_url)
+
+
+if __name__ == "__main__":
+    target_ip = "192.168.1.1"
+    target_url = "http://example.com"
+    ports_to_scan = [22, 80, 443, 8080]
+
+    run_vulnerability_scan(target_ip, target_url, ports_to_scan)
